@@ -19,7 +19,7 @@ sub run {
     my $body_string = "<html><body>\n";
     $body_string .= "The Wather Page<br />";
 
-    $body_string .= MyWeather::Logic::Forecast->get_forecast_data( postal_code => $parsed_args->{postal_code} );
+    $body_string .= MyWeather::Logic::Forecast->get_forecast_data( postal_code => $parsed_args->{postal_code}, units => 'imperial' );
 
     $body_string .= "</html></body>\n";
 

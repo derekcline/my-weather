@@ -11,10 +11,13 @@ sub get_forecast_data {
     my $self = shift;
     my %args = @_;
 
-    my $weather_data = MyWeather::Model::Forecast->load_data( postal_code => $args{postal_code} );
+    my $weather_data = MyWeather::Model::Forecast->load_data(%args);
+    Erik::dump( weather_data => $weather_data );
 
     my @content;
-    push @content, "Sky: " . $weather_data->{weather_data}->[0]->{main};
+    push @content, sprintf "Sky: %s", $weather_data->{weather}->[0]->{main};
+    push @content, sprintf "Temperature: %s&deg;", $weather_data->{main}->{temp};
+    push @content, "Test - Data";
 
     return join("<br />\n", @content);
 }
